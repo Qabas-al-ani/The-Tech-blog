@@ -23,11 +23,20 @@
     />
     <style>
       body {
-        font-family: 'Cinzel', serif;
+        font-family: "Cinzel", serif;
+        background-image: url('https://source.unsplash.com/1600x900/?coding');
+        background-size: cover;
+        height: 100vh;
       }
       .navbar-brand {
         font-size: 1.5rem;
       }
+      .customCard {    
+        opacity: 0.9;
+      }
+
+
+
 
     </style>
 
@@ -37,8 +46,8 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient">
         <div class="container-fluid">
-          <a class="navbar-brand " href="#">The Tech Blog</a>
-          
+          <a class="navbar-brand" href="#">The Tech Blog</a>
+
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
@@ -59,8 +68,30 @@
       </nav>
     </header>
 
-    <main >
-     
+    <main class="d-flex justify-content-center">
+      <div
+        class=" 
+          card
+          col-lg-10 col-md-10 col-sm-10
+          mt-5
+          bg-dark bg-gradient
+          text-white
+          customCard 
+        "
+      >
+        <div class="card-body ">
+          <h5 class="card-title">
+            Object-Relational Mapping
+          </h5>
+          <br />
+   <hr>
+          <p>
+            I have really loved learning about ORMs. it\'s really simplified the way I create queries in SQL!
+          </p>
+        </div>
+      </div>
+    </main>
+
     <script src="./script/script.js"></script>
   </body>
 </html>
