@@ -1,0 +1,15 @@
+body {
+  font-family: "Cinzel", serif;
+  background-image: url("https://source.unsplash.com/1600x900/?coding");
+  background-size: cover;
+  height: 100vh;
+}
+.navbar-brand {
+  font-size: 1.5rem;
+}
+.customCard {
+  opacity: 0.9;
+}
+.user-comment {
+  font-size: 1.3rem;
+}
