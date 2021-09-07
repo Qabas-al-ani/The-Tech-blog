@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
       ],
     });
 
-    res.json(dbPostData.reverse());
+    res.status(200).json(dbPostData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -70,7 +70,7 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ message: "No post found with this id" });
       return;
     }
-    res.json(dbPostData);
+    res.status(200).json(dbPostData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -85,7 +85,7 @@ router.post("/", withAuth, async (req, res) => {
       user_id: req.session.user_id,
     });
 
-    res.json(dbPostData);
+    res.status(200).json(dbPostData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -110,6 +110,7 @@ router.put("/:id", withAuth, async (req, res) => {
       res.status(404).json({ message: "No post found with this id" });
       return;
     }
+    res.status(200).json(dbPostData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -128,7 +129,7 @@ router.delete("/:id", withAuth, async (req, res) => {
       res.status(404).json({ message: "No post found with this id" });
       return;
     }
-    res.json(dbPostData);
+    res.status(200).json(dbPostData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

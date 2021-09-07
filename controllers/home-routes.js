@@ -36,10 +36,24 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("login");
+});
+
+router.get("/signup", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("signup");
+});
+
 router.get("/post/:id", async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect("/login");
-  } else {
+ 
     try {
       const dbPostData = await Post.findOne({
         where: {
@@ -79,15 +93,11 @@ router.get("/post/:id", async (req, res) => {
       console.log(err);
       res.status(500).json(err);
     }
-  }
+  
 });
 
 router.get("/posts-comments", async (req, res) => {
-  if (!req.session.loggedIn) {
 
-    res.redirect("/login");
-    
-  } else {
     try {
       const dbPostData = await Post.findOne({
         where: {
@@ -122,24 +132,11 @@ router.get("/posts-comments", async (req, res) => {
       }
       const post = dbPostData.get({ plain: true });
       res.render("posts-comments", { post, loggedIn: req.session.loggedIn });
-
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
-  }
-});
-
-router.get("/signup", (req, res) => {
-  res.render("signup");
-});
-
-router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
-  }
-  res.render("login");
+  
 });
 
 module.exports = router;

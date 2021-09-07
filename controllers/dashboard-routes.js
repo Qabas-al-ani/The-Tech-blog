@@ -41,53 +41,49 @@ router.get("/", withAuth, async (req, res) => {
 });
 
 router.get("/edit/:id", withAuth, async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect("/login");
-  } else {
-    try {
-      const dbPostData = await Post.findOne({
-        where: {
-          id: req.params.id,
+  try {
+    const dbPostData = await Post.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["id", "title", "content", "created_at"],
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
         },
-        attributes: ["id", "title", "content", "created_at"],
-        include: [
-          {
+        {
+          model: Comment,
+          attributes: [
+            "id",
+            "comment_text",
+            "post_id",
+            "user_id",
+            "created_at",
+          ],
+          include: {
             model: User,
             attributes: ["username"],
           },
-          {
-            model: Comment,
-            attributes: [
-              "id",
-              "comment_text",
-              "post_id",
-              "user_id",
-              "created_at",
-            ],
-            include: {
-              model: User,
-              attributes: ["username"],
-            },
-          },
-        ],
-      });
+        },
+      ],
+    });
 
-      if (!dbPostData) {
-        res.status(404).json({ message: "No post found with this id" });
-        return;
-      }
-
-      const post = dbPostData.get({ plain: true });
-      res.render("edit-post", { post, loggedIn: true });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
+    if (!dbPostData) {
+      res.status(404).json({ message: "No post found with this id" });
+      return;
     }
+
+    const post = dbPostData.get({ plain: true });
+    res.render("edit-post", { post, loggedIn: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
 router.get("/new", (req, res) => {
-  res.render("new-post");
+  res.render("new-post", { loggedIn: true });
 });
 
 module.exports = router;
