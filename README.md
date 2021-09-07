@@ -14,7 +14,7 @@
 - [Test Instructions](#test-instructions)
 - [Questions](#questions)
 
-[Click here to view The Tech Blog Live! ]()
+[Click here to view The Tech Blog Live! ]( https://serene-cove-48650.herokuapp.com/ )
 
 ## Description:
 
@@ -36,6 +36,7 @@ This is a back end and front end project that allows users to post about whateve
 - Node.
 - connect-session-sequelize.
 - bcrypt.
+- Heroku.
 ```
 
 ### Installation
