@@ -38,10 +38,10 @@ router.get("/", async (req, res) => {
 
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
+    return res.redirect("/");
   }
-  res.render("login");
+  
+  return res.render("login");
 });
 
 router.get("/signup", (req, res) => {

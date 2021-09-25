@@ -17,7 +17,7 @@ const signupFormHandler = async event => {
     if (response.ok) {
       document.location.replace("/dashboard");
     } else {
-      alert(response.statusText);
+      alert("This username has been used! please use a unique name!!");
     }
   }
 };
